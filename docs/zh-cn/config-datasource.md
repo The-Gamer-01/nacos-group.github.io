@@ -29,14 +29,14 @@ Nacos从2.2.0版本开始,可通过SPI机制注入多数据源实现插件,并�
 1. 引入`nacos-datasource-plugin`依赖
 2. 实现`com.alibaba.nacos.plugin.datasource.mapper`包下数据表对应Mapper接口中的特殊SQL方法，主要是涉及分页等方言差别，可参考`com.alibaba.nacos.plugin.datasource.impl`下Derby以及MySQL的实现，只需实现对应接口即可。接口与表对应关系如下：
 
-| 数据库表     | Mapper|
-| ----------- | ----------- |
-|config_info_aggr| ConfigInfoAggrMapper      |
-|config_info_beta| ConfigInfoBetaMapper        |
-|config_info|ConfigInfoMapper|
-|config_info_tag|ConfigInfoTagMapper|
-|config_tags_relation|ConfigTagsRelationMapper|
-|his_config_info|HistoryConfigInfoMapper|
+    | 数据库表     | Mapper|
+    | ----------- | ----------- |
+    |config_info_aggr| ConfigInfoAggrMapper      |
+    |config_info_beta| ConfigInfoBetaMapper        |
+    |config_info|ConfigInfoMapper|
+    |config_info_tag|ConfigInfoTagMapper|
+    |config_tags_relation|ConfigTagsRelationMapper|
+    |his_config_info|HistoryConfigInfoMapper|
 
 3. 编写SPI配置文件，其名字为`com.alibaba.nacos.plugin.datasource.mapper.Mapper`，写入实现Mapper接口的类，可参考config模块中Derby与MySQL配置文件。
 4. 插件使用者则可以通过依赖此插件，达到实现对应数据源操作的效果
